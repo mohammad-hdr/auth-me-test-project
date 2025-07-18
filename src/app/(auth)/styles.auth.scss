@@ -1,0 +1,91 @@
+@import './../globals.scss';
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+}
+
+main.login-page {
+    display: grid;
+    place-items: center;
+    height: 100dvh;
+    width: 100%;
+    padding: 1rem;
+
+    .auth-container {
+        width: 100%;
+        max-width: 220px;
+        text-align: right;
+
+        h1 {
+            @extend .type-subtitle;
+            @extend .text-muted;
+            margin-bottom: px-to-rem(12);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: px-to-rem(12);
+
+            .field {
+                display: flex;
+                flex-direction: column;
+                gap: px-to-rem(6);
+                text-align: center;
+
+                input {
+                    @extend .type-input;
+                    width: 100%;
+                    border-radius: px-to-rem(8);
+                    transition: all 0.2s ease;
+                    background: var(--primary-800);
+                    color: var(--color-foreground);
+                    padding: px-to-rem(6);
+                    text-align: center;
+
+                    &::placeholder {
+                        @extend .type-input;
+                        @extend .text-muted;
+                        transition: all 0.2s ease;
+                    }
+
+                    &:focus {
+                        outline: none;
+                        &::placeholder {
+                            color: transparent;
+                        }
+                    }
+                }
+
+                .error-message {
+                    @extend .type-body;
+                    @extend .text-error;
+                }  
+            }
+            .submit-button {
+                @extend .type-button;
+                @extend .text-muted;
+                @extend .border-muted;
+                border: 1px solid;
+                padding: px-to-rem(6);
+                border-radius: px-to-rem(8);
+
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+                &:disabled {
+                    background: #9ca3af;
+                    cursor: not-allowed;
+                    transform: none;
+                }
+
+                &:active:not(:disabled) {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+}
+
+
