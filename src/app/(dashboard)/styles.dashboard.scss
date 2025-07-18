@@ -1,4 +1,5 @@
 @import './../globals.scss';
+// It's not a module file to use @extend
 
 .dashboard-page {
     @extend .bg-primary;

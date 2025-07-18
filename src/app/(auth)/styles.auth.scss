@@ -1,4 +1,5 @@
 @import './../globals.scss';
+// It's not a module file to use @extend
 
 body {
     background-color: var(--color-background);
