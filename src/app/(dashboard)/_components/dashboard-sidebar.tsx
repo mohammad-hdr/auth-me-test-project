@@ -10,7 +10,7 @@ import { getUser, logout } from "@/hooks/use-auth";
 
 //! Components
 import Link from "next/link";
-import { ChevronsRight, EllipsisVertical, LogOut } from "lucide-react";
+import { ChevronsRight, EllipsisVertical, LogOut, Menu } from "lucide-react";
 
 //! Styles
 import "./styles.dashboard-sidebar.scss";
@@ -46,7 +46,11 @@ export default function DashboardSidebar() {
                         const isActive = pathname === item.href;
                         return (
                             <li key={item.href}>
-                                <Link href={item.href} className={classNames("nav-item", isActive && "active", isCollapsed && !isMobile && "collapsed")}>
+                                <Link
+                                    href={item.href}
+                                    onClick={() => setIsMobileOpen(false)}
+                                    className={classNames("nav-item", isActive && "active", isCollapsed && !isMobile && "collapsed")}
+                                >
                                     <span className="nav-icon">{item.icon}</span>
                                     {(!isCollapsed || isMobile) && <span className="nav-label">{item.label}</span>}
                                 </Link>
@@ -87,13 +91,7 @@ export default function DashboardSidebar() {
             <header className="mobile-toggle-header">
                 <h6 className="logo">دکاموند</h6>
                 <button className="toggle-open" onClick={() => setIsMobileOpen(!isMobileOpen)}>
-                    <LogOut
-                        size={24}
-                        onClick={() => {
-                            logout();
-                            push("/auth");
-                        }}
-                    />
+                    <Menu size={24} />
                 </button>
             </header>
 

@@ -17,7 +17,13 @@ body {
         max-width: px-to-rem(380);
         text-align: right;
 
-        h1 {
+        h1{
+            @extend .type-title;
+            color: var(--color-foreground);
+            margin-bottom: px-to-rem(8);
+        }
+
+        h2 {
             @extend .type-subtitle;
             @extend .text-muted;
             margin-bottom: px-to-rem(12);

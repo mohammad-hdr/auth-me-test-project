@@ -95,7 +95,8 @@ export default function PhoneForm() {
 
     return (
         <div className="auth-container">
-            <h1>شماره موبایل خود را وارد کنید.</h1>
+            <h1>دکاموند</h1>
+            <h2>شماره موبایل خود را وارد کنید.</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
                 <Input
                     id="phoneNumber"

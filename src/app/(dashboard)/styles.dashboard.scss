@@ -15,8 +15,8 @@
         flex-direction: column;
         overflow: hidden;
         margin-top: 0;
-        @media (max-width: var(--breakpoint-tablet)) {
-            margin-top: px-to-rem(16);
+        @media (max-width: 768px) {
+            margin-top: px-to-rem(38);
         }
         main {
             flex: 1;

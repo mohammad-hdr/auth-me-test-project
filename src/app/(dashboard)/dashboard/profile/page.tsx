@@ -19,7 +19,9 @@ export default function ProfilePage() {
                     </div>
                     <div className="profile-info-item">
                         <span className="profile-info-item-label">تلفن</span>
-                        <span className="profile-info-item-value">{user?.phoneNumber}</span>
+                        <span dir="ltr" className="profile-info-item-value">
+                            {user?.phoneNumber}
+                        </span>
                     </div>
                 </div>
             </div>

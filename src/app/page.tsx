@@ -1,4 +1,5 @@
+import "./globals.scss";
+
 export default function HomePage() {
-    // TODO check if user is logged in or redirect to /auth
-    return null;
+    return <div style={{ color: "var(--color-background)", display: "grid", placeItems: "center", height: "100dvh" }}>TODO: Could Be a Landing Page</div>;
 }
