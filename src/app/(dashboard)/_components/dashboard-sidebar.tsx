@@ -59,7 +59,7 @@ export default function DashboardSidebar() {
             {/* User Profile Section */}
             <div className={classNames("user-profile", isCollapsed && !isMobile && "collapsed")}>
                 <figure className="profile-image-container">
-                    <Image src={user?.picture} alt="User Profile" fill className="profile-image" />
+                    <Image src={user?.picture || "/images/default-profile.png"} alt="User Profile" fill className="profile-image" />
                 </figure>
                 {(!isCollapsed || isMobile) && (
                     <div className="profile-info">
