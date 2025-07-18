@@ -193,7 +193,7 @@
         .profile-image-container {
             position: relative;
             height: px-to-rem(48);
-            width: px-to-rem(48);
+            aspect-ratio: 1/1;
 
             .profile-image {
                 border-radius: px-to-rem(8);
