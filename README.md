@@ -85,7 +85,7 @@ src/
 1. **Clone the repository**
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/mohammad-hdr/auth-me-test-project.git
     cd auth-me-test-project
     ```
 
