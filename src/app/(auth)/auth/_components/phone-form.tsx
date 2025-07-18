@@ -51,9 +51,10 @@ const formatPhoneNumber = (value: string): string => {
 };
 
 export default function PhoneForm() {
-    const { fetchUser } = useUser();
     const { push } = useRouter();
+    const { fetchUser } = useUser();
     const {
+        trigger,
         setValue,
         register,
         handleSubmit,
@@ -87,10 +88,14 @@ export default function PhoneForm() {
         }
     };
 
-    // Handle input change with formatting
-    const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Handle input change with formatting and validation
+    const handlePhoneNumberChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const formatted = formatPhoneNumber(e.target.value);
         setValue("phoneNumber", formatted);
+        const cleaned = formatted.replace(/\s/g, "");
+        if (cleaned.length === 11) {
+            await trigger("phoneNumber");
+        }
     };
 
     return (
