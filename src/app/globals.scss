@@ -1,0 +1,117 @@
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    // Primary
+    --primary-100: #f8f9fa;
+    --primary-200: #e9ecef;
+    --primary-300: #dee2e6;
+    --primary-400: #ced4da;
+    --primary-500: #adb5bd;
+    --primary-600: #6c757d;
+    --primary-700: #495057;
+    --primary-800: #343a40;
+    --primary-900: #212529;
+    --primary-1000: #18191a;
+
+    // Success
+    --color-success: #10b981;
+
+    // Error
+    --error-100: #ff8292;
+    --error-500: #b92134;
+    --error-900: #4e1c23;
+
+    // Semantic
+    --color-primary: var(--primary-500);
+    --color-muted: var(--primary-600);
+    --color-error: var(--error-500);
+    --color-background: var(--primary-1000);
+    --color-foreground: var(--primary-400);
+
+    // Breakpoints
+    --breakpoint-tablet: 768px;
+    --breakpoint-laptop: 1024px;
+    --breakpoint-desktop: 1280px;
+    --breakpoint-desktop-lg: 1440px;
+    --breakpoint-desktop-xl: 1680px;
+    --breakpoint-desktop-fhd: 1920px;
+    --breakpoint-desktop-2k: 2560px;
+    --breakpoint-desktop-4k: 3840px;
+}
+
+// Light theme support
+// @media (prefers-color-scheme: light) {
+//   :root {
+//     --color-text: var(--neutral-100);
+//     --color-text-light: var(--neutral-400);
+//     --color-text-muted: var(--neutral-500);
+
+//     --color-background: var(--neutral-900);
+//     --color-surface: var(--neutral-800);
+//     --color-border: var(--neutral-700);
+//   }
+// }
+
+// Colors
+.text-primary {
+    color: var(--color-primary);
+}
+.text-muted {
+    color: var(--color-muted);
+}
+.text-error {
+    color: var(--color-error);
+}
+.text-success {
+    color: var(--color-success);
+}
+
+.bg-primary {
+    background-color: var(--color-background);
+}
+.bg-secondary {
+    background-color: var(--primary-900);
+}
+.bg-error {
+    background-color: var(--error-900);
+}
+
+.border-primary {
+    border-color: var(--primary-800);
+}
+.border-muted {
+    border-color: var(--color-muted);
+}
+
+// Typography
+@function px-to-rem($value) {
+    @return $value / 16 * 1rem;
+} // px to rem
+
+.type-title {
+    font-size: px-to-rem(18);
+    font-weight: 1000;
+}
+.type-subtitle {
+    font-size: px-to-rem(14);
+    font-weight: 500;
+}
+.type-input {
+    font-size: px-to-rem(14);
+    font-weight: 500;
+}
+.type-body {
+    font-size: px-to-rem(14);
+    font-weight: 500;
+}
+.type-body-bold {
+    font-size: px-to-rem(18);
+    font-weight: 600;
+}
+.type-button {
+    font-size: px-to-rem(14);
+    font-weight: 500;
+}
