@@ -196,7 +196,7 @@
             width: px-to-rem(48);
 
             .profile-image {
-                border-radius: 50%;
+                border-radius: px-to-rem(8);
                 object-fit: contain;
             }
         }

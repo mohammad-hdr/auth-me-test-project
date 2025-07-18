@@ -1,4 +1,4 @@
-@import "@/app/globals.scss";
+@import './../globals.scss';
 
 .dashboard-page {
     @extend .bg-primary;
@@ -24,6 +24,23 @@
             border-radius: px-to-rem(24);
             border: 1px solid var(--primary-800);
             background-image: linear-gradient(to bottom right, var(--primary-900) 0%, var(--primary-1000) 50%);
+        }
+    }
+
+    .dashboard-header {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        border-bottom: 1px solid var(--primary-800);
+        padding: px-to-rem(16);
+
+        .header-title {
+            @extend .type-body-bold;
+            @extend .text-primary;
+
+            span {
+                color: var(--color-foreground);
+            }
         }
     }
 }

@@ -1,21 +1,25 @@
 "use client";
 //! Required
 import { useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import classNames from "classnames";
 import SidebarItems, { type SidebarItem } from "@/constants/navigation-items";
+import { getUser, logout } from "@/hooks/use-auth";
 
 //! Components
 import Link from "next/link";
-import { Menu, ChevronsRight, EllipsisVertical } from "lucide-react";
+import { ChevronsRight, EllipsisVertical, LogOut } from "lucide-react";
 
 //! Styles
 import "./styles.dashboard-sidebar.scss";
 
 export default function DashboardSidebar() {
+    const user = getUser();
+    const { push } = useRouter();
     const pathname = usePathname();
+
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -54,13 +58,23 @@ export default function DashboardSidebar() {
 
             {/* User Profile Section */}
             <div className={classNames("user-profile", isCollapsed && !isMobile && "collapsed")}>
-                <div className="profile-image-container">
-                    <Image src="/images/profile.jpg" alt="User Profile" fill className="profile-image" />
-                </div>
+                <figure className="profile-image-container">
+                    <Image src={user?.picture} alt="User Profile" fill className="profile-image" />
+                </figure>
                 {(!isCollapsed || isMobile) && (
                     <div className="profile-info">
-                        <h3 className="profile-name">جواد محمدی</h3>
-                        <EllipsisVertical size={24} className="profile-menu" />
+                        <h3 className="profile-name">
+                            {user?.firstName} {user?.lastName}
+                        </h3>
+                        <button
+                            className="profile-logout"
+                            onClick={() => {
+                                logout();
+                                push("/auth");
+                            }}
+                        >
+                            <LogOut size={24} />
+                        </button>
                     </div>
                 )}
             </div>
@@ -73,7 +87,13 @@ export default function DashboardSidebar() {
             <header className="mobile-toggle-header">
                 <h6 className="logo">دکاموند</h6>
                 <button className="toggle-open" onClick={() => setIsMobileOpen(!isMobileOpen)}>
-                    <Menu size={24} />
+                    <LogOut
+                        size={24}
+                        onClick={() => {
+                            logout();
+                            push("/auth");
+                        }}
+                    />
                 </button>
             </header>
 

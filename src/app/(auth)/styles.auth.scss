@@ -5,7 +5,7 @@ body {
     color: var(--color-foreground);
 }
 
-main.login-page {
+.login-page {
     display: grid;
     place-items: center;
     height: 100dvh;
@@ -14,7 +14,7 @@ main.login-page {
 
     .auth-container {
         width: 100%;
-        max-width: 220px;
+        max-width: px-to-rem(380);
         text-align: right;
 
         h1 {
@@ -43,6 +43,11 @@ main.login-page {
                     color: var(--color-foreground);
                     padding: px-to-rem(6);
                     text-align: center;
+
+                    &.error {
+                        background: var(--error-900);
+                        color: var(--error-100);
+                    }
 
                     &::placeholder {
                         @extend .type-input;

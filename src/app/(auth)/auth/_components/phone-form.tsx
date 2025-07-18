@@ -1,15 +1,26 @@
 "use client";
-
+//! Required
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import useUser from "@/hooks/use-user";
+import { login } from "@/hooks/use-auth";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
-// Phone number validation schema
 const phoneSchema = z.object({
     phoneNumber: z
         .string()
         .min(1, "لطفا شماره تلفن خود را وارد کنید")
-        .regex(/^(\+98|0)?9\d{9}$/, "لطفا شماره تلفن خود را به درستی وارد کنید")
+        .transform((val: string) => val.replace(/\s/g, ""))
+        .pipe(
+            z
+                .string()
+                .regex(
+                    /^(?:\+98|0|98)?(?:9(?:0[1-5]|[13]\d|2[0-2]|98)\d{7}|9(?:0[6-9]|[1-5]\d|6[0-6]|7[0-9]|8[0-8])\d{7})$/,
+                    "لطفا شماره تلفن خود را به درستی وارد کنید"
+                )
+        )
         .transform((val) => {
             const persianNumbers = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
             const arabicNumbers = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
@@ -19,7 +30,6 @@ const phoneSchema = z.object({
             return val;
         }),
 });
-
 type PhoneFormData = z.infer<typeof phoneSchema>;
 
 const formatPhoneNumber = (value: string): string => {
@@ -40,6 +50,8 @@ const formatPhoneNumber = (value: string): string => {
 };
 
 export default function PhoneForm() {
+    const { fetchUser } = useUser();
+    const { push } = useRouter();
     const {
         setValue,
         register,
@@ -52,10 +64,25 @@ export default function PhoneForm() {
 
     const onSubmit = async (data: PhoneFormData) => {
         try {
-            console.log("Form submitted with:", data);
-            alert(`Phone number submitted: ${data.phoneNumber}`);
-        } catch (error) {
-            console.error("Error submitting form:", error);
+            const user = await fetchUser();
+            login({
+                token: user.results[0].login.uuid,
+                firstName: user.results[0].name.first,
+                lastName: user.results[0].name.last,
+                picture: user.results[0].picture.thumbnail,
+                phoneNumber: data.phoneNumber,
+            });
+            toast("ورود با موفقیت انجام شد", {
+                icon: "👏",
+                style: { borderRadius: "1rem", background: "#1E1E1E", color: "#CED4DA" },
+            });
+            push("/dashboard");
+        } catch (error: any) {
+            console.log(error);
+            toast(error?.response?.data?.message || "خطایی رخ داد، دوباره تلاش کنید", {
+                icon: "🚫",
+                style: { borderRadius: "1rem", background: "#4E1C23", color: "#B92134" },
+            });
         }
     };
 
