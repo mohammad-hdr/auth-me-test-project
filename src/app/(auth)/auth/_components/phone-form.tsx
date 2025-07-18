@@ -7,6 +7,7 @@ import useUser from "@/hooks/use-user";
 import { login } from "@/hooks/use-auth";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { Input, Button } from "@/components/ui";
 
 const phoneSchema = z.object({
     phoneNumber: z
@@ -96,22 +97,19 @@ export default function PhoneForm() {
         <div className="auth-container">
             <h1>شماره موبایل خود را وارد کنید.</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
-                <div className="field">
-                    <input
-                        id="phoneNumber"
-                        dir="ltr"
-                        type="tel"
-                        placeholder="0912 345 6789"
-                        {...register("phoneNumber")}
-                        onChange={handlePhoneNumberChange}
-                        maxLength={13} // Include spaces
-                        className={`form-input ${errors.phoneNumber ? "error" : ""}`}
-                    />
-                    {errors.phoneNumber && <span className="error-message">{errors.phoneNumber.message}</span>}
-                </div>
-                <button type="submit" disabled={isSubmitting} className="submit-button">
+                <Input
+                    id="phoneNumber"
+                    dir="ltr"
+                    type="tel"
+                    placeholder="0912 345 6789"
+                    {...register("phoneNumber")}
+                    onChange={handlePhoneNumberChange}
+                    maxLength={13} // Include spaces
+                    error={errors.phoneNumber}
+                />
+                <Button type="submit" disabled={isSubmitting} loading={isSubmitting}>
                     ورود
-                </button>
+                </Button>
             </form>
         </div>
     );
